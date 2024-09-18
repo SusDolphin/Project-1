@@ -1,10 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", Helvetica, sans-serif!important;
+    background-color: rgba(93, 192, 225, 0.93);
+    color: white;
 }
 
 h1 {
-    text-align: center;
+    text-align: center !important;
+    margin-top: 10px !important; 
+    padding-top: 10px !important;
+    font-size: 20pt;
+    font-weight: bolder;
+    
+
 }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.header-content img.image {
+    width: 93%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content .text-content {
+    width: 100%;
+    
+}
+
+.text-content h1 {
+    margin-bottom: 10px;
+}
+
+.text-content p {
+    text-align: left;
+    line-height: 1.6;
+    height: 75%;
+    width: 100% !important;
+    
+}
+
 
 .add-item-section, .inventory-section, .stock-out-section, .product-categories-section {
     margin: 20px auto;

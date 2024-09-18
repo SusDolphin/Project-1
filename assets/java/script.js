@@ -1,34 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const amazonSearchInput = document.getElementById('amazon-search');
     const searchAmazonBtn = document.getElementById('search-amazon-btn');
     const fetchCategoriesBtn = document.getElementById('fetch-categories-btn');
     const amazonProductsDiv = document.getElementById('amazon-products');
     const categoriesListDiv = document.getElementById('categories-list');
+    const amazonForm=document.getElementById('amazon-form')
 
-    searchAmazonBtn.addEventListener('click', searchAmazonProducts);
+    amazonForm.addEventListener('submit', searchAmazonProducts);
     fetchCategoriesBtn.addEventListener('click', fetchProductCategories);
 
-    async function searchAmazonProducts() {
+    async function searchAmazonProducts(event) {
+        event.preventDefault()
         const keyword = amazonSearchInput.value.trim();
+        alert(keyword)
         if (keyword) {
-            const url = `https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=${encodeURIComponent(keyword)}&searchIndex=All`;
-            const options = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-key': 'YOUR_API_KEY',
-                    'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
-                }
-            };
+            // const url = `https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=${encodeURIComponent(keyword)}&searchIndex=All`;
+            // const options = {
+            //     method: 'GET',
+            //     headers: {
+            //         'x-rapidapi-key': 'd2227509c4msh0e3b5a642d51cabp16ba4fjsn260f96984',
+            //         'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
+            //     }
+            // };
+            const url = 'https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=laptop&searchIndex=All';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '698712bb0bmsh02ee17ae12527f0p17442ajsnb1eee07c4329',
+		'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
+	}
+};
 
-            try {
+            // try {
                 const response = await fetch(url, options);
                 const result = await response.json();
                 console.log('Search Result:', result);
                 displayAmazonProducts(result);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-                amazonProductsDiv.innerHTML = 'Error fetching products.';
-            }
+            // } catch (error) {
+            //     console.error('Error fetching products:', error);
+            //     amazonProductsDiv.innerHTML = 'Error fetching products.';
+            // }
         }
     }
 
@@ -37,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const options = {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': 'YOUR_API_KEY',
+                'x-rapidapi-key': '698712bb0bmsh02ee17ae12527f0p17442ajsnb1eee07c4329',
                 'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
             }
         };
@@ -101,3 +112,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
