@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             //     }
             // };
             const url = 'https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=laptop&searchIndex=All';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '698712bb0bmsh02ee17ae12527f0p17442ajsnb1eee07c4329',
-		'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
-	}
-};
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': '9dbfa7e9a0msh49bc7e008310dcep114c45jsn043854135b72',
+                    'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
+                }
+            };
 
             // try {
                 const response = await fetch(url, options);
@@ -44,11 +44,11 @@ const options = {
     }
 
     async function fetchProductCategories() {
-        const url = 'https://real-time-amazon-data.p.rapidapi.com/product-category-list?country=US';
+        const url = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL&is_prime=false';
         const options = {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': '698712bb0bmsh02ee17ae12527f0p17442ajsnb1eee07c4329',
+                'x-rapidapi-key': '9dbfa7e9a0msh49bc7e008310dcep114c45jsn043854135b72',
                 'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
             }
         };
