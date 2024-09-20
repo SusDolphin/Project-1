@@ -98,7 +98,9 @@ button:disabled #fetch-categories-btn{
     
 }
 .product-image{
-    width: 100%;
+    width: 30%;
     height: auto;
     border-radius: 10px;
+    display: flex;
+    
 }

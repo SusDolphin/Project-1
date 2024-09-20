@@ -55,34 +55,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    function displayAmazonProducts(products) {
-        amazonProductsDiv.innerHTML = '';
+    // function displayAmazonProducts(products) {
+    //     amazonProductsDiv.innerHTML = '';
 
-        if (products && Array.isArray(products)) {
-            products.forEach(product => {
-                const productEl = document.createElement('div');
-                productEl.classList.add('product');
+    //     if (products && Array.isArray(products)) {
+    //         products.forEach(product => {
+    //             const productEl = document.createElement('div');
+    //             productEl.classList.add('product');
 
-                const nameEl = document.createElement('h3');
-                nameEl.textContent = product.title || 'No Name';
+    //             const nameEl = document.createElement('h3');
+    //             nameEl.textContent = product.title || 'No Name';
 
-                const priceEl = document.createElement('p');
-                priceEl.textContent = `Price: $${product.price || 'N/A'}`;
+    //             const priceEl = document.createElement('p');
+    //             priceEl.textContent = `Price: $${product.price || 'N/A'}`;
 
-                const stockInBtn = document.createElement('button');
-                stockInBtn.textContent = 'Stock In';
-                stockInBtn.addEventListener('click', () => addToInventory(product.title, 1));
+    //             const stockInBtn = document.createElement('button');
+    //             stockInBtn.textContent = 'Stock In';
+    //             stockInBtn.addEventListener('click', () => addToInventory(product.title, 1));
 
-                productEl.appendChild(nameEl);
-                productEl.appendChild(priceEl);
-                productEl.appendChild(stockInBtn);
+    //             productEl.appendChild(nameEl);
+    //             productEl.appendChild(priceEl);
+    //             productEl.appendChild(stockInBtn);
 
-                amazonProductsDiv.appendChild(productEl);
-            });
-        } else {
-            amazonProductsDiv.textContent = 'No products found.';
-        }
-    }
+    //             amazonProductsDiv.appendChild(productEl);
+    //         });
+    //     } else {
+    //         amazonProductsDiv.textContent = 'No products found.';
+    //     }
+    // }
 
     function displayProducts(products) {
         productsListDiv.innerHTML = ``;
@@ -127,4 +127,125 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const inventoryTableBody = document.querySelector('#inventory-table tbody');
+        const stockInForm = document.getElementById('stock-in-form');
+        const stockOutForm = document.getElementById('stock-out-form');
+        const activityLog = document.getElementById('activity-log');
+
+        
+        let inventory = JSON.parse(localStorage.getItem('inventory'))|| {};
+        function saveInventory() {
+            localStorage.setItem('inventory', JSON.stringify(inventory));
+        }
+
+
+        // Stock In Form Submit Handler
+        stockInForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const itemName = document.getElementById('stock-in-item').value.trim();
+            const quantity = parseInt(document.getElementById('stock-in-quantity').value.trim(), 10);
+
+            if (itemName && quantity > 0) {
+                stockItemIn(itemName, quantity);
+                updateInventoryTable();
+                logActivity(`Stocked in ${quantity} units of ${itemName}`);
+                saveInventory();
+            }
+
+            // Reset the form
+            stockInForm.reset();
+        });
+
+        // Stock Out Form Submit Handler
+        stockOutForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const itemName = document.getElementById('stock-out-item').value.trim();
+            const quantity = parseInt(document.getElementById('stock-out-quantity').value.trim(), 10);
+
+            if (itemName && quantity > 0 && inventory[itemName] && inventory[itemName] >= quantity) {
+                stockItemOut(itemName, quantity);
+                updateInventoryTable();
+                logActivity(`Stocked out ${quantity} units of ${itemName}`);
+                saveInventory();
+            } else {
+                logActivity(`Cannot stock out ${quantity} units of ${itemName}. Not enough stock.`);
+            }
+
+            // Reset the form
+            stockOutForm.reset();
+        });
+
+        // Function to handle stock in
+        function stockItemIn(itemName, quantity) {
+            if (inventory[itemName]) {
+                inventory[itemName] += quantity;
+            } else {
+                inventory[itemName] = quantity;
+            }
+        }
+
+        // Function to handle stock out
+        function stockItemOut(itemName, quantity) {
+            if (inventory[itemName]) {
+                inventory[itemName] -= quantity;
+                if (inventory[itemName] < 0) {
+                    inventory[itemName] = 0; // Ensure stock doesn't go negative
+                }
+            }
+        }
+
+        // Function to delete an item from inventory
+        function deleteItem(itemName) {
+            if (inventory[itemName]) {
+                delete inventory[itemName];  // Remove the item from inventory
+                updateInventoryTable();      // Update the table
+                logActivity(`Deleted ${itemName} from inventory.`);
+                saveInventory();
+            }
+        }
+
+        // Function to update the inventory table
+        function updateInventoryTable() {
+            inventoryTableBody.innerHTML = ''; // Clear the table first
+
+            for (const itemName in inventory) {
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = itemName;
+
+                const quantityCell = document.createElement('td');
+                quantityCell.textContent = inventory[itemName];
+
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('button', 'is-danger');
+                deleteButton.addEventListener('click', () => {
+                    deleteItem(itemName); // Delete the entire item from the inventory
+                });
+
+                actionCell.appendChild(deleteButton);
+
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell);
+                row.appendChild(actionCell);
+
+                inventoryTableBody.appendChild(row);
+            }
+        }
+
+        // Function to log activity
+        function logActivity(message) {
+            const logEntry = document.createElement('li');
+            logEntry.textContent = `${new Date().toLocaleString()}: ${message}`;
+            activityLog.appendChild(logEntry);
+            saveInventory();
+        }
+        updateInventoryTable();
+    });
+
+
 

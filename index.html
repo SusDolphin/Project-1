@@ -47,7 +47,7 @@
     <!-- Product Categories -->
 
     <div class="product-categories-section">
-        <h2>Product Categories</h2>
+        <h2>Product Finder</h2>
         <button type="button" id="fetch-categories-btn">Fetch random stuff</button>
         <form id="amazon-form">
             <label for="amazon-search">Search for Products: </label>
@@ -63,16 +63,16 @@
         </div> -->
     </div>
 
-    <!-- Add Items from Amazon -->
-    <div class="add-item-section">
+   <!----Add Items from Amazon -->
+    <!-- <div class="add-item-section">
         <h2>Restock from Amazon</h2>
-        <!-- <form id="amazon-form">
+         <form id="amazon-form">
             <label for="amazon-search">Search for Products: </label>
             <input type="text" id="amazon-search" placeholder="Enter product keyword" required>
             <button type="submit" id="search-amazon-btn">Search</button>
         </form> -->
-        <div id="amazon-products"></div>
-    </div>
+        <!-- <div id="amazon-products"></div>
+    </div> -->
 
     <!-- Inventory Table -->
     <div class="inventory-section">
@@ -89,6 +89,16 @@
                 <!-- Rows will be dynamically added here -->
             </tbody>
         </table>
+    </div>
+    <div class="stock-out-section">
+        <h2>Stock in</h2>
+        <form id="stock-in-form">
+            <label for="stock-in-item">Item Name: </label>
+            <input type="text" id="stock-in-item" placeholder="Enter item name" required>
+            <label for="stock-in-quantity">Quantity: </label>
+            <input type="number" id="stock-in-quantity" placeholder="Enter quantity" required>
+            <button type="submit" id="stock-in-btn">Stock in</button>
+        </form>
     </div>
 
     <!-- Stock Out Section -->
