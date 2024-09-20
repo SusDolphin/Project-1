@@ -45,9 +45,15 @@
     <h2 class="is-flex is-justify-content-center mt-5 is-size-2">Inventory Management System</h2>
 
     <!-- Product Categories -->
+
     <div class="product-categories-section">
         <h2>Product Categories</h2>
-        <button type="button" id="fetch-categories-btn">Fetch Categories</button>
+        <button type="button" id="fetch-categories-btn">Fetch random stuff</button>
+        <form id="amazon-form">
+            <label for="amazon-search">Search for Products: </label>
+            <input type="text" id="amazon-search" placeholder="Enter product keyword" required>
+            <button type="submit" id="search-amazon-btn">Search</button>
+        </form>
         <div id="categories-list"></div>
         <!-- <div>
             <div class="product">
@@ -60,11 +66,11 @@
     <!-- Add Items from Amazon -->
     <div class="add-item-section">
         <h2>Restock from Amazon</h2>
-        <form id="amazon-form">
+        <!-- <form id="amazon-form">
             <label for="amazon-search">Search for Products: </label>
             <input type="text" id="amazon-search" placeholder="Enter product keyword" required>
             <button type="submit" id="search-amazon-btn">Search</button>
-        </form>
+        </form> -->
         <div id="amazon-products"></div>
     </div>
 

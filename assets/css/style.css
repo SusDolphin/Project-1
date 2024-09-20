@@ -61,15 +61,15 @@ h1 {
     border-radius: 5px;
 }
 
-button {
+button #fetch-categories-btn {
     margin-top: 10px;
     padding: 5px 10px;
     cursor: pointer;
 }
 
-button:disabled {
+button:disabled #fetch-categories-btn{
     cursor: not-allowed;
-    background-color: #aaa;
+    background-color: rgb(35, 156, 53);
 }
 
 #inventory-table {

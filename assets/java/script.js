@@ -12,30 +12,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function searchAmazonProducts(event) {
         event.preventDefault()
         const keyword = amazonSearchInput.value.trim();
-        alert(keyword)
-        if (keyword) {
+        fetchProductCategories(keyword)
+        // if (keyword) {
         
-            const url = 'https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=kitchen%20cabinets&searchIndex=All';
-            const options = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-key': 'a1175446bfmsh8b8db5e8d350b1fp1df102jsnaf62ed7cb548',
-                    'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
-                }
-            };
+        //     const url = 'https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=kitchen%20cabinets&searchIndex=All';
+        //     const options = {
+        //         method: 'GET',
+        //         headers: {
+        //             'x-rapidapi-key': 'a1175446bfmsh8b8db5e8d350b1fp1df102jsnaf62ed7cb548',
+        //             'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
+        //         }
+        //     };
             
-            try {
-                const response = await fetch(url, options);
-                const result = await response.json();
-                console.log(result);
-            } catch (error) {
-                console.error(error);
-            }
-        }
+        //     try {
+        //         const response = await fetch(url, options);
+        //         const result = await response.json();
+        //         console.log(result);
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // }
     }
 
-    async function fetchProductCategories() {
-        const url = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL&is_prime=false';
+    async function fetchProductCategories(searchQuery) {
+        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${searchQuery}&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL&is_prime=false`;
         const options = {
             method: 'GET',
             headers: {
@@ -89,17 +89,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (products && Array.isArray(products)) {
             products.forEach(product => {
+            //     const productEl=` <div class="product">
+            //     <h3 class="product-name">${product.product_title || 'No Name'}</h3>
+            //     <img class="product-image" src=${product.product_photo} alt="product image">
+            //     <p class="star-rating">${product.product_star_rating}</p>
+            //     <p class="product-price">${product.product_price}</p>
+            // </div>`
+            
                 const productEl = document.createElement('div');
                 productEl.classList.add('product');
-
+                // productEl.href=product.product_url;
                 const nameEl = document.createElement('h3');
                 nameEl.textContent = product.product_title || 'No Name';
                 nameEl.classList.add('product-name');
+                const linkEl=document.createElement('a');
+                linkEl.href=product.product_url
+                linkEl.target= "_blank"
+                linkEl.rel='noreferrer noopener'
                 const imageEl = document.createElement('img');
                 imageEl.classList.add('product-image');
                 imageEl.src=product.product_photo
+                const ratingEl=document.createElement('h3')
+                ratingEl.classList.add('star-rating')
+                ratingEl.textContent=product.product_star_rating
+                const priceEl=document.createElement('h3')
+                priceEl.classList.add('product-price')
+                priceEl.textContent=product.product_price
                 productEl.appendChild(nameEl);
-                productEl.appendChild(imageEl);
+                productEl.appendChild(linkEl);
+                linkEl.appendChild(imageEl);
+                productEl.appendChild(ratingEl);
+                productEl.appendChild(priceEl);
                 productsListDiv.appendChild(productEl);
             });
         } else {
