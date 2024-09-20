@@ -91,3 +91,14 @@ button:disabled {
 .product button {
     margin-top: 10px;
 }
+
+.product-name{
+    padding: 5px;
+
+    
+}
+.product-image{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
