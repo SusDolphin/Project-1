@@ -55,34 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // function displayAmazonProducts(products) {
-    //     amazonProductsDiv.innerHTML = '';
-
-    //     if (products && Array.isArray(products)) {
-    //         products.forEach(product => {
-    //             const productEl = document.createElement('div');
-    //             productEl.classList.add('product');
-
-    //             const nameEl = document.createElement('h3');
-    //             nameEl.textContent = product.title || 'No Name';
-
-    //             const priceEl = document.createElement('p');
-    //             priceEl.textContent = `Price: $${product.price || 'N/A'}`;
-
-    //             const stockInBtn = document.createElement('button');
-    //             stockInBtn.textContent = 'Stock In';
-    //             stockInBtn.addEventListener('click', () => addToInventory(product.title, 1));
-
-    //             productEl.appendChild(nameEl);
-    //             productEl.appendChild(priceEl);
-    //             productEl.appendChild(stockInBtn);
-
-    //             amazonProductsDiv.appendChild(productEl);
-    //         });
-    //     } else {
-    //         amazonProductsDiv.textContent = 'No products found.';
-    //     }
-    // }
 
     function displayProducts(products) {
         productsListDiv.innerHTML = ``;
