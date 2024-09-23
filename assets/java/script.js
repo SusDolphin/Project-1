@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 logActivity(`Cannot stock out ${quantity} units of ${itemName}. Not enough stock.`);
             }
 
-            // Reset the form
+           
             stockOutForm.reset();
         });
 
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (inventory[itemName]) {
                 inventory[itemName] -= quantity;
                 if (inventory[itemName] < 0) {
-                    inventory[itemName] = 0; // Ensure stock doesn't go negative
+                    inventory[itemName] = 0; 
                 }
             }
         }
@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Function to delete an item from inventory
         function deleteItem(itemName) {
             if (inventory[itemName]) {
-                delete inventory[itemName];  // Remove the item from inventory
-                updateInventoryTable();      // Update the table
+                delete inventory[itemName];  
+                updateInventoryTable();      
                 logActivity(`Deleted ${itemName} from inventory.`);
                 saveInventory();
             }
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Function to update the inventory table
         function updateInventoryTable() {
-            inventoryTableBody.innerHTML = ''; // Clear the table first
+            inventoryTableBody.innerHTML = ''; 
 
             for (const itemName in inventory) {
                 const row = document.createElement('tr');
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 deleteButton.textContent = 'Delete';
                 deleteButton.classList.add('button', 'is-danger');
                 deleteButton.addEventListener('click', () => {
-                    deleteItem(itemName); // Delete the entire item from the inventory
+                    deleteItem(itemName); 
                 });
 
                 actionCell.appendChild(deleteButton);
@@ -232,27 +232,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         function displayTrackingResult(result) {
-            trackingResultDiv.innerHTML = ''; // Clear any previous content
+            trackingResultDiv.innerHTML = ''; 
         
             if (result && result.success) {
                 const {
                     carrier,
                     destination,
                     estimated_delivery,
-                    is_delivered,
-                    message,
-                    origination,
-                    scans,
                     summary,
                     tracking_number,
                     tracking_url
                 } = result;
         
-                // Create tracking details dynamically using DOM manipulation
+                // Create tracking details dynamically 
                 const trackingDiv = document.createElement('div');
                 trackingDiv.classList.add('tracking-details');
                 
-                // Tracking Number
+               
                 const trackingNumberEl = document.createElement('h3');
                 trackingNumberEl.textContent = 'Tracking Number: ';
                 const trackingLinkEl = document.createElement('a');
@@ -262,25 +258,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trackingLinkEl.textContent = tracking_number;
                 trackingNumberEl.appendChild(trackingLinkEl);
                 trackingDiv.appendChild(trackingNumberEl);
-                
-                // Carrier
+         
                 const carrierEl = document.createElement('h3');
                 carrierEl.textContent = `Carrier: ${carrier}`;
                 trackingDiv.appendChild(carrierEl);
         
-                // Status
                 const statusEl = document.createElement('h3');
                 statusEl.textContent = `Status: ${summary}`;
                 trackingDiv.appendChild(statusEl);
         
-        
-                // Destination
                 const destinationEl = document.createElement('h3');
                 destinationEl.textContent = `Destination: ${destination}`;
                 trackingDiv.appendChild(destinationEl);
-    
-        
-                // Estimated Delivery
+
                 const estimatedDeliveryEl = document.createElement('h3');
                 estimatedDeliveryEl.textContent = `Estimated Delivery: ${estimated_delivery || 'N/A'}`;
                 trackingDiv.appendChild(estimatedDeliveryEl);
