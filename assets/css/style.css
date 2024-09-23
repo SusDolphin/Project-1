@@ -56,7 +56,7 @@ h1 {
 }
 
 
-.inventory-section, .stock-out-section, .stock-in-section, .product-categories-section{
+.inventory-section, .stock-out-section, .stock-in-section, .product-categories-section,.shipment-tracking-section {
     margin: 20px auto;
     padding: 10px;
     width: 80%;
@@ -148,14 +148,6 @@ opacity: .6;
 }
 
 
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
-}
 
 h1 {
     margin-bottom: 20px;
@@ -168,30 +160,6 @@ h1 {
 #image-upload {
     padding: 10px;
     margin-right: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-#result-section {
-    margin-top: 20px;
-}
-.shipment-tracking-section {
-    margin: 20px auto;
-    padding: 10px;
-    width: 80%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
 }
 
 #track-btn {
@@ -219,12 +187,9 @@ button:hover {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: white;
-    color: black;
-}
-#tracking-result{
     background-color: rgb(40, 129, 129);
     color: white    ;
 }
+
 
 
