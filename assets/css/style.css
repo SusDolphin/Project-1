@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+    
+  
 }
 body {
     font-family: "Trebuchet MS", Helvetica, sans-serif!important;
@@ -53,7 +56,7 @@ h1 {
 }
 
 
-.add-item-section, .inventory-section, .stock-out-section, .stock-in-section, .product-categories-section {
+.inventory-section, .stock-out-section, .stock-in-section, .product-categories-section{
     margin: 20px auto;
     padding: 10px;
     width: 80%;
@@ -120,6 +123,7 @@ opacity: .6;
     transform: translatey(4px); 
 }
 
+
 #inventory-table {
     width: 100%;
     border-collapse: collapse;
@@ -128,16 +132,6 @@ opacity: .6;
 #inventory-table th, #inventory-table td {
     border: 1px solid #ddd;
     padding: 8px;
-}
-
-.product, .category {
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-}
-
-.product button {
-    margin-top: 10px;
 }
 
 .product-name{
@@ -152,3 +146,85 @@ opacity: .6;
     display: flex;
     
 }
+
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+#image-upload {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#result-section {
+    margin-top: 20px;
+}
+.shipment-tracking-section {
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#track-btn {
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20pt;
+    cursor: pointer;
+    background-color: green;
+    box-shadow: 0 5px 8px 0 #666;
+    transition: 0.3s;
+}
+
+#track-btn:hover {
+    opacity: 0.6;
+}
+#track-btn:active{
+    background-color: #3fcb44;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px); 
+}
+
+#tracking-result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+#tracking-result{
+    background-color: rgb(40, 129, 129);
+    color: white    ;
+}
+
+

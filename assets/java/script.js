@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const amazonSearchInput = document.getElementById('amazon-search');
-    const searchAmazonBtn = document.getElementById('search-amazon-btn');
     const fetchCategoriesBtn = document.getElementById('fetch-categories-btn');
-    const amazonProductsDiv = document.getElementById('amazon-products');
     const productsListDiv = document.getElementById('categories-list');
     const amazonForm=document.getElementById('amazon-form')
 
@@ -15,23 +13,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         fetchProductCategories(keyword)
         // if (keyword) {
         
-        //     const url = 'https://amazon-product-info2.p.rapidapi.com/Amazon/search.php?keywords=kitchen%20cabinets&searchIndex=All';
-        //     const options = {
-        //         method: 'GET',
-        //         headers: {
-        //             'x-rapidapi-key': 'a1175446bfmsh8b8db5e8d350b1fp1df102jsnaf62ed7cb548',
-        //             'x-rapidapi-host': 'amazon-product-info2.p.rapidapi.com'
-        //         }
-        //     };
-            
-        //     try {
-        //         const response = await fetch(url, options);
-        //         const result = await response.json();
-        //         console.log(result);
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // }
     }
 
     async function fetchProductCategories(searchQuery) {
@@ -61,16 +42,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (products && Array.isArray(products)) {
             products.forEach(product => {
-            //     const productEl=` <div class="product">
-            //     <h3 class="product-name">${product.product_title || 'No Name'}</h3>
-            //     <img class="product-image" src=${product.product_photo} alt="product image">
-            //     <p class="star-rating">${product.product_star_rating}</p>
-            //     <p class="product-price">${product.product_price}</p>
-            // </div>`
             
                 const productEl = document.createElement('div');
                 productEl.classList.add('product');
-                // productEl.href=product.product_url;
                 const nameEl = document.createElement('h3');
                 nameEl.textContent = product.product_title || 'No Name';
                 nameEl.classList.add('product-name');
@@ -111,6 +85,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         function saveInventory() {
             localStorage.setItem('inventory', JSON.stringify(inventory));
         }
+
+      
+
+        
 
 
         // Stock In Form Submit Handler
@@ -214,10 +192,103 @@ document.addEventListener('DOMContentLoaded', async () => {
             const logEntry = document.createElement('li');
             logEntry.textContent = `${new Date().toLocaleString()}: ${message}`;
             activityLog.appendChild(logEntry);
-            saveInventory();
+           
         }
+        
         updateInventoryTable();
     });
+    document.addEventListener('DOMContentLoaded', () => {
+        const shipmentForm = document.getElementById('shipment-form');
+        const trackingResultDiv = document.getElementById('tracking-result');
+    
+        shipmentForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const trackingNumber = document.getElementById('tracking-number').value.trim();
+    
+            if (trackingNumber) {
+                trackShipment(trackingNumber);
+            }
+        });
+    
+        async function trackShipment(trackingNumber) {
+            const url = `https://backtrack.p.rapidapi.com/v1/track/${trackingNumber}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': 'a1175446bfmsh8b8db5e8d350b1fp1df102jsnaf62ed7cb548',
+                    'x-rapidapi-host': 'backtrack.p.rapidapi.com'
+                }
+            };
+        
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                displayTrackingResult(result.return_value);
+                console.log(result);
+            } catch (error) {
+                console.error('Error tracking shipment:', error);
+                trackingResultDiv.innerHTML = 'Error tracking shipment.';
+            }
+        }
+        
+        function displayTrackingResult(result) {
+            trackingResultDiv.innerHTML = ''; // Clear any previous content
+        
+            if (result && result.success) {
+                const {
+                    carrier,
+                    destination,
+                    estimated_delivery,
+                    is_delivered,
+                    message,
+                    origination,
+                    scans,
+                    summary,
+                    tracking_number,
+                    tracking_url
+                } = result;
+        
+                // Create tracking details dynamically using DOM manipulation
+                const trackingDiv = document.createElement('div');
+                trackingDiv.classList.add('tracking-details');
+                
+                // Tracking Number
+                const trackingNumberEl = document.createElement('h3');
+                trackingNumberEl.textContent = 'Tracking Number: ';
+                const trackingLinkEl = document.createElement('a');
+                trackingLinkEl.href = tracking_url;
+                trackingLinkEl.target = "_blank";
+                trackingLinkEl.rel = "noreferrer noopener";
+                trackingLinkEl.textContent = tracking_number;
+                trackingNumberEl.appendChild(trackingLinkEl);
+                trackingDiv.appendChild(trackingNumberEl);
+                
+                // Carrier
+                const carrierEl = document.createElement('h3');
+                carrierEl.textContent = `Carrier: ${carrier}`;
+                trackingDiv.appendChild(carrierEl);
+        
+                // Status
+                const statusEl = document.createElement('h3');
+                statusEl.textContent = `Status: ${summary}`;
+                trackingDiv.appendChild(statusEl);
+        
+        
+                // Destination
+                const destinationEl = document.createElement('h3');
+                destinationEl.textContent = `Destination: ${destination}`;
+                trackingDiv.appendChild(destinationEl);
+    
+        
+                // Estimated Delivery
+                const estimatedDeliveryEl = document.createElement('h3');
+                estimatedDeliveryEl.textContent = `Estimated Delivery: ${estimated_delivery || 'N/A'}`;
+                trackingDiv.appendChild(estimatedDeliveryEl);
 
-
-
+                // Append the trackingDiv to the main trackingResultDiv
+                trackingResultDiv.appendChild(trackingDiv);
+            } else {
+                trackingResultDiv.textContent = 'No tracking information found.';
+            }
+        }
+    });        
