@@ -4,43 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search and Stock</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+ <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Welcome to Search and Stock!</h1>
-        <p>Search and Stock is your all-in-one inventory management solution designed to streamline how you manage and restock your products. With Search and Stock, you can easily track your current inventory levels, monitor stock outs, and maintain control over your entire inventory from one simple platform. Plus, you can search for new items directly from Amazon and seamlessly add them to your stock, ensuring you never run out of essential items. Whether you're running a business or just managing personal stock, Search and Stock keeps your inventory organized and up to date. Simplify your inventory, optimize restocking, and keep your supplies flowing effortlessly with Search and Stock.</p>
-        <img class="image" src="./assets/images/Inventory Management.jpeg" alt="image of our logo!">
+        <h1 class="is-size-1">Welcome to Search and Stock!</h1>
+        <div class="header-content">
+            <div class="columns">
+                <div class="column is-flex is-justify-content-center">
+                    <img class="image" src="./assets/images/Inventory Management.jpeg" alt="image of our logo!">   
+                </div>
+                <div class="column">
+                    <div class="text-content is-size-4">
+                        <p>Search and Stock is your all-in-one inventory management solution designed to streamline how you manage and restock your products. With Search and Stock, you can easily track your current inventory levels, track your packages, monitor stock outs, and maintain control over your entire inventory from one simple platform. Plus, you can search for new items directly from Amazon and seamlessly add them to your stock, ensuring you never run out of essential items. Whether you're running a business or just managing personal stock, Search and Stock keeps your inventory organized and up to date. Simplify your inventory, optimize restocking, and keep your supplies flowing effortlessly with Search and Stock.</p>
+                        </div>
+                </div>
+            </div>
+        </div>
     </header>
+    
 
 <main>
-    <h2>Search</h2>
-    <p>Type whatver item you're searching for and we'll generate a link for you!</p>
-
-    <h2>Stock</h2>
-    <p>After you're done searching for the items you need, keep track of your inventory!</p>
+    <div class="columns">
+        <div class="column is-size-4">
+            <h2 class="pl-6 is-size-3 has-text-weight-bold">Search</h2>
+            <p class="pl-6">Type whatver item you're searching for and we'll generate a link for you!</p>
+        </div>
+        <div class="column is-size-4">
+            <h2 class="is-size-3 has-text-weight-bold">Stock</h2>
+            <p>After you're done searching for the items you need, keep track of your inventory!</p>
+        </div>
+    </div>
+   
 </main>
 
-    <h2>Inventory Management System</h2>
+    <h2 class="is-flex is-justify-content-center mt-5 is-size-2">Inventory Management System</h2>
 
     <!-- Product Categories -->
     <div class="product-categories-section">
-        <h2>Product Categories</h2>
-        <button type="button" id="fetch-categories-btn">Fetch Categories</button>
-        <div id="categories-list"></div>
-    </div>
-
-    <!-- Add Items from Amazon -->
-    <div class="add-item-section">
-        <h2>Restock from Amazon</h2>
+        <h2>Product Finder</h2>
         <form id="amazon-form">
             <label for="amazon-search">Search for Products: </label>
             <input type="text" id="amazon-search" placeholder="Enter product keyword" required>
-            <button type="button" id="search-amazon-btn">Search</button>
+            <button type="submit" id="search-amazon-btn">Search</button>
+           
         </form>
-        <div id="amazon-products"></div>
+        <button type="button" id="fetch-categories-btn">Fetch random stuff</button>
+         <div id="categories-list"></div>
+        
+       
     </div>
+    <div class="shipment-tracking-section">
+        <h2>Track Your Shipment</h2>
+        <form id="shipment-form">
+            <label for="tracking-number">Tracking Number: </label>
+            <input type="text" id="tracking-number" placeholder="Enter your tracking number" required>
+            <button type="submit" id="track-btn">Track</button>
+        </form>
+        <div id="tracking-result"></div>
+    </div>
+
+  
 
     <!-- Inventory Table -->
     <div class="inventory-section">
@@ -58,13 +86,23 @@
             </tbody>
         </table>
     </div>
+    <div class="stock-in-section">
+        <h2>Stock in</h2>
+        <form id="stock-in-form">
+            <label for="stock-in-item">Item Name: </label>
+            <input type="text" id="stock-in-item" placeholder="Enter item name" required><br>
+            <label for="stock-in-quantity">Quantity: </label>
+            <input type="number" id="stock-in-quantity" placeholder="Enter quantity" required>
+            <button type="submit" id="stock-in-btn">Stock in</button>
+        </form>
+    </div>
 
     <!-- Stock Out Section -->
     <div class="stock-out-section">
         <h2>Stock Out</h2>
         <form id="stock-out-form">
             <label for="stock-out-item">Item Name: </label>
-            <input type="text" id="stock-out-item" placeholder="Enter item name" required>
+            <input type="text" id="stock-out-item" placeholder="Enter item name" required><br>
             <label for="stock-out-quantity">Quantity: </label>
             <input type="number" id="stock-out-quantity" placeholder="Enter quantity" required>
             <button type="submit" id="stock-out-btn">Stock Out</button>
