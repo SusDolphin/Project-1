@@ -25,7 +25,7 @@ Bulma.io
 
 ## Link of Deployed Application
 
-[](https://susdolphin.github.io/Project-1/)
+https://susdolphin.github.io/Project-1/
 
 
 
