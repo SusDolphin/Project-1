@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    
+  
+}
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif!important;
+    background-color: rgba(93, 192, 225, 0.93);
+    color: white;
+}
+
+h1 {
+    text-align: center !important;
+    margin-top: 10px !important; 
+    padding-top: 10px !important;
+    font-size: 20pt;
+    font-weight: bolder;
+    
+
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.header-content img.image {
+    width: 93%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content .text-content {
+    width: 100%;
+    
+}
+
+.text-content h1 {
+    margin-bottom: 10px;
+}
+
+.text-content p {
+    text-align: left;
+    line-height: 1.6;
+    height: 75%;
+    width: 100% !important;
+    
+}
+
+
+.inventory-section, .stock-out-section, .stock-in-section, .product-categories-section,.shipment-tracking-section {
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-categories-section #fetch-categories-btn,#search-amazon-btn{
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20pt;
+    cursor: pointer;
+    background-color: green;
+    box-shadow: 0 5px 8px 0 #666;
+    opacity: 1;
+    transition: .3s;
+    
+}
+.product-categories-section #fetch-categories-btn:hover,#search-amazon-btn:hover{
+opacity: .6;
+}
+.product-categories-section  #fetch-categories-btn:active,#search-amazon-btn:active{
+    background-color: #3fcb44;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px);
+}
+.stock-in-section #stock-in-btn{
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20pt;
+    cursor: pointer;
+    background-color: green;
+    box-shadow: 0 5px 8px 0 #666;
+    opacity: 1;
+    transition: .3s;
+}
+.stock-in-section #stock-in-btn:hover{
+    opacity: .6;
+}
+.stock-in-section #stock-in-btn:active{
+    background-color: #3fcb44;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px); 
+}
+.stock-out-section #stock-out-btn{
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20pt;
+    cursor: pointer;
+    background-color: green;
+    box-shadow: 0 5px 8px 0 #666;
+    opacity: 1;
+    transition: .3s;
+}
+.stock-out-section #stock-out-btn:hover{
+    opacity: .6;
+}
+.stock-out-section #stock-out-btn:active{
+    background-color: #3fcb44;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px); 
+}
+
+
+#inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#inventory-table th, #inventory-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.product-name{
+    padding: 5px;
+
+    
+}
+.product-image{
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    display: flex;
+    
+}
+
+
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+#image-upload {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+#track-btn {
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20pt;
+    cursor: pointer;
+    background-color: green;
+    box-shadow: 0 5px 8px 0 #666;
+    transition: 0.3s;
+}
+
+#track-btn:hover {
+    opacity: 0.6;
+}
+#track-btn:active{
+    background-color: #3fcb44;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px); 
+}
+
+#tracking-result {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: rgb(40, 129, 129);
+    color: white    ;
+}
+
+
+
